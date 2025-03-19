@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atomic Executor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a; /* Dark background */
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Changed to flex-start for scrollable content */
+            min-height: 100vh;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        /* Main Container */
+        .main-container {
+            background-color: rgba(26, 26, 26, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 1000px; /* Adjusted max-width */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            margin: 60px 0; /* Added margin for spacing */
+        }
+
+        /* Logo */
+        .logo {
+            width: 120px; /* Adjusted size */
+            height: 120px; /* Adjusted size */
+            background-image: url('https://media.discordapp.net/attachments/1350704655046283365/1350719684349136960/Atomic.png?ex=67dbb7bb&is=67da663b&hm=e3af0b448bfad52d68b089d0445923d3a8213622a8a1454f9e00cc4d04480318&=&format=webp&quality=lossless&width=280&height=280');
+            background-size: cover;
+            border-radius: 20px;
+            margin: 0 auto 20px; /* Centered logo */
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Title and Subtitle */
+        .title {
+            font-size: 36px; /* Adjusted size */
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #bb86fc; /* Purple accent */
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #a0a0a0;
+            margin-bottom: 30px;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .feature {
+            background-color: rgba(38, 38, 38, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 24px rgba(187, 134, 252, 0.4); /* Purple shadow */
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            color: #bb86fc; /* Purple accent */
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: #a0a0a0;
+        }
+
+        /* Additional Options Grid */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .option {
+            background-color: rgba(38, 38, 38, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .option:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 24px rgba(187, 134, 252, 0.4); /* Purple shadow */
+        }
+
+        .option-icon {
+            font-size: 32px;
+            color: #bb86fc; /* Purple accent */
+            margin-bottom: 15px;
+        }
+
+        .option-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .option-description {
+            font-size: 14px;
+            color: #a0a0a0;
+        }
+
+        /* Download Button */
+        .download-button {
+            background-color: #bb86fc; /* Purple accent */
+            color: #1a1a1a; /* Dark text */
+            border: none;
+            border-radius: 12px;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px; /* Adjusted margin */
+        }
+
+        .download-button:hover {
+            background-color: #9a67ea; /* Darker purple on hover */
+            transform: scale(1.05);
+        }
+
+        /* Discord Button */
+        .discord-button {
+            margin-top: 20px;
+            display: inline-block;
+            color: #bb86fc; /* Purple accent */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .discord-button:hover {
+            color: #9a67ea; /* Darker purple on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Logo -->
+        <div class="logo"></div>
+
+        <!-- Title and Subtitle -->
+        <div class="title">Atomic 2.1~3V</div>
+        <div class="subtitle">Latest Release - Unleash the Power</div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature">
+                <i class="fas fa-users feature-icon"></i>
+                <div class="feature-title">Good Community</div>
+                <div class="feature-description">Join our growing community of developers and users.</div>
+            </div>
+            <div class="feature">
+                <i class="fas fa-link feature-icon"></i>
+                <div class="feature-title">Multi Attach</div>
+                <div class="feature-description">Attach to multiple clients at once for seamless execution.</div>
+            </div>
+            <div class="feature">
+                <i class="fas fa-tachometer-alt feature-icon"></i>
+                <div class="feature-title">Performance</div>
+                <div class="feature-description">Run scripts with high speed and efficiency.</div>
+            </div>
+        </div>
+
+        <!-- Additional Options Grid -->
+        <div class="options-grid">
+            <div class="option">
+                <i class="fas fa-shield-alt option-icon"></i>
+                <div class="option-title">Security</div>
+                <div class="option-description">Advanced security features to protect your scripts.</div>
+            </div>
+            <div class="option">
+                <i class="fas fa-sync-alt option-icon"></i>
+                <div class="option-title">Auto Updates</div>
+                <div class="option-description">Automatic updates for the latest features and improvements.</div>
+            </div>
+        </div>
+
+        <!-- Download Button -->
+        <a href="https://www.dropbox.com/scl/fi/4pumxyogyfh07loiwb8xo/Atomic-BootStrapper.zip?rlkey=peue51801jnsgyayna6wtxrpd&e=1&st=gennpwfx&dl=1" class="download-button" download="Atomic-BootStrapper.zip" id="downloadButton">Download Now</a>
+
+        <!-- Discord Button -->
+        <a href="https://discord.gg/KEQ6pwdftE" class="discord-button" target="_blank">
+            <i class="fab fa-discord"></i> Join Our Discord
+        </a>
+    </div>
+
+    <!-- Voice Effects -->
+    <audio id="clickSound">
+        <source src="https://www.soundjay.com/buttons/button-3.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Play sound effect on button click
+        const downloadButton = document.getElementById('downloadButton');
+        const clickSound = document.getElementById('clickSound');
+
+        downloadButton.addEventListener('click', () => {
+            clickSound.play();
+        });
+    </script>
+</body>
+</html>
